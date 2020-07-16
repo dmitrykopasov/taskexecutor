@@ -4,16 +4,23 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.Field;
+import java.util.Date;
 
 public class ProcessHolder {
 
     private static Logger logger = LogManager.getLogger(Scheduler.class);
 
+    private String execPath;
     private Process process;
     private long pid;
+    private long start;
 
-    public ProcessHolder(Process process){
+    private PsStat summaryStat;
+
+    public ProcessHolder(String execPath, Process process){
+        this.execPath = execPath;
         this.process = process;
+        this.start = new Date().getTime();
         findPid();
     }
 
@@ -34,11 +41,43 @@ public class ProcessHolder {
         }
     }
 
-    public static Logger getLogger() {
-        return logger;
+    public Process getProcess() {
+        return process;
     }
 
-    public static void setLogger(Logger logger) {
-        ProcessHolder.logger = logger;
+    public void setProcess(Process process) {
+        this.process = process;
+    }
+
+    public long getPid() {
+        return pid;
+    }
+
+    public void setPid(long pid) {
+        this.pid = pid;
+    }
+
+    public String getExecPath() {
+        return execPath;
+    }
+
+    public void setExecPath(String execPath) {
+        this.execPath = execPath;
+    }
+
+    public PsStat getSummaryStat() {
+        return summaryStat;
+    }
+
+    public void setSummaryStat(PsStat summaryStat) {
+        this.summaryStat = summaryStat;
+    }
+
+    /**
+     * Duration in seconds
+     * @return
+     */
+    public int getDuration(){
+        return Math.round((new Date().getTime() - start)/1000);
     }
 }

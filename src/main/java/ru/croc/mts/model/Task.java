@@ -25,10 +25,10 @@ public class Task {
     private Integer priority;
 
     /**
-     * Planned CPU utilization rate
+     * Planned CPU utilization rate, 0 - 1
      */
     @Column(name="cpu")
-    private Float cpu;
+    private Double cpu;
 
     /**
      * Planned memory usage, megabytes
@@ -88,11 +88,11 @@ public class Task {
         this.priority = priority;
     }
 
-    public Float getCpu() {
+    public Double getCpu() {
         return cpu;
     }
 
-    public void setCpu(Float cpu) {
+    public void setCpu(Double cpu) {
         this.cpu = cpu;
     }
 

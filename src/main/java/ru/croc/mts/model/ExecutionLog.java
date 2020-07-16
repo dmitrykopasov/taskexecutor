@@ -19,13 +19,13 @@ public class ExecutionLog {
      * Actual CPU utilization rate
      */
     @Column(name="cpu")
-    private Float cpu;
+    private Double cpu;
 
     /**
      * Actual memory usage, megabytes
      */
     @Column(name="memory")
-    private Integer memory;
+    private Double memory;
 
     /**
      * Actual execution time, seconds
@@ -52,19 +52,19 @@ public class ExecutionLog {
         this.executable = executable;
     }
 
-    public Float getCpu() {
+    public Double getCpu() {
         return cpu;
     }
 
-    public void setCpu(Float cpu) {
+    public void setCpu(Double cpu) {
         this.cpu = cpu;
     }
 
-    public Integer getMemory() {
+    public Double getMemory() {
         return memory;
     }
 
-    public void setMemory(Integer memory) {
+    public void setMemory(Double memory) {
         this.memory = memory;
     }
 

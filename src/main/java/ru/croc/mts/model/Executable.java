@@ -10,8 +10,17 @@ import javax.persistence.Table;
 public class Executable {
 
     @Id
-    @Column(name = "email")
+    @Column(name = "path")
     private String path;
+
+    @Column(name = "avg_cpu")
+    private Double avgCpu;
+
+    @Column(name = "avg_memory")
+    private Double avgMemory;
+
+    @Column(name = "avg_duration")
+    private Integer avgDuration;
 
     public String getPath() {
         return path;
@@ -19,5 +28,29 @@ public class Executable {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public Double getAvgCpu() {
+        return avgCpu;
+    }
+
+    public void setAvgCpu(Double avgCpu) {
+        this.avgCpu = avgCpu;
+    }
+
+    public Double getAvgMemory() {
+        return avgMemory;
+    }
+
+    public void setAvgMemory(Double avgMemory) {
+        this.avgMemory = avgMemory;
+    }
+
+    public Integer getAvgDuration() {
+        return avgDuration;
+    }
+
+    public void setAvgDuration(Integer avgDuration) {
+        this.avgDuration = avgDuration;
     }
 }
