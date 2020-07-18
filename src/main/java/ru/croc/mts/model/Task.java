@@ -25,16 +25,16 @@ public class Task {
     private Integer priority;
 
     /**
-     * Planned CPU utilization rate, 0 - 1
+     * Planned CPU utilization rate, 0 - 100
      */
     @Column(name="cpu")
     private Double cpu;
 
     /**
-     * Planned memory usage, megabytes
+     * Planned memory usage, 0 - 100
      */
     @Column(name="memory")
-    private Integer memory;
+    private Double memory;
 
     /**
      * Planned execution time, seconds
@@ -96,11 +96,11 @@ public class Task {
         this.cpu = cpu;
     }
 
-    public Integer getMemory() {
+    public Double getMemory() {
         return memory;
     }
 
-    public void setMemory(Integer memory) {
+    public void setMemory(Double memory) {
         this.memory = memory;
     }
 
@@ -112,7 +112,7 @@ public class Task {
         this.execTime = execTime;
     }
 
-    @JsonProperty("status")
+    @JsonProperty("state")
     public Status getStatus() {
         return status;
     }

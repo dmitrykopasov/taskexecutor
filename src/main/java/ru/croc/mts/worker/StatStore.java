@@ -26,30 +26,37 @@ public class StatStore {
     private TaskRepository taskRepo;
 
     @Transactional
-    public void storeStatsAndRemoveTask(ProcessHolder holder, String taskId){
+    public void storeStatsAndRemoveTask(ProcessHolder holder){
         Executable executable = new Executable();
         executable.setPath(holder.getExecPath());
         ExecutionLog newLog = new ExecutionLog();
         newLog.setExecutable(executable);
-        newLog.setCpu(holder.getSummaryStat().getAvgCpu());
-        newLog.setMemory(holder.getSummaryStat().getMemory());
+        if (holder.getSummaryStat()==null) {
+            newLog.setCpu(0.);
+            newLog.setMemory(0.);
+        } else {
+            newLog.setCpu(holder.getSummaryStat().getAvgCpu());
+            newLog.setMemory(holder.getSummaryStat().getMemory());
+        }
         newLog.setExecTime(holder.getDuration());
         newLog.setCreatedAt(new Date());
         newLog.setId(CommonUtil.createUuid());
         logRepo.save(newLog);
         List<ExecutionLog> logList = logRepo.findAllByExecutable(executable);
-        double sumCpu = 0, sumMemory = 0;
-        long sumDuration = 0;
-        for (ExecutionLog log : logList) {
-            sumCpu += log.getCpu();
-            sumMemory += log.getMemory();
-            sumDuration += log.getExecTime();
-        }
         int size = logList.size();
-        executable.setAvgCpu(sumCpu/size);
-        executable.setAvgMemory(sumMemory/size);
-        executable.setAvgDuration(Math.round(sumDuration/size));
+        if (size>0) {
+            double sumCpu = 0, sumMemory = 0;
+            long sumDuration = 0;
+            for (ExecutionLog log : logList) {
+                sumCpu += log.getCpu();
+                sumMemory += log.getMemory();
+                sumDuration += log.getExecTime();
+            }
+            executable.setAvgCpu(sumCpu / size);
+            executable.setAvgMemory(sumMemory / size);
+            executable.setAvgDuration(Math.round(sumDuration / size));
+        }
         executableRepo.save(executable);
-        taskRepo.deleteById(taskId);
+        taskRepo.deleteById(holder.getTaskId());
     }
 }

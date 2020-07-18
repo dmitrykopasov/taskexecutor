@@ -16,13 +16,13 @@ public class ExecutionLog {
     private Executable executable;
 
     /**
-     * Actual CPU utilization rate
+     * Actual CPU utilization rate, 0 - 100
      */
     @Column(name="cpu")
     private Double cpu;
 
     /**
-     * Actual memory usage, megabytes
+     * Actual memory usage, 0 - 100
      */
     @Column(name="memory")
     private Double memory;

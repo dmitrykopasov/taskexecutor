@@ -21,6 +21,7 @@ import ru.croc.mts.util.CommonUtil;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -37,8 +38,8 @@ public class WebController {
     private ExecutableRepository execRepo;
 
     @RequestMapping(value = "/tasks", method = RequestMethod.GET, produces = "application/json")
-    public Page<Task> getTasks(@PageableDefault(value=10, page=0) Pageable page) {
-        Page<Task> tasks = taskRepo.findAllByOrderByCreatedAtDesc(page);
+    public List<Task> getTasks() {
+        List<Task> tasks = taskRepo.findAllByOrderByCreatedAtDesc();
         return tasks;
     }
 

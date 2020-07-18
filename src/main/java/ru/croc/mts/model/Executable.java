@@ -13,9 +13,15 @@ public class Executable {
     @Column(name = "path")
     private String path;
 
+    /**
+     * Average CPU utilization rate, 0 - 100
+     */
     @Column(name = "avg_cpu")
     private Double avgCpu;
 
+    /**
+     * Average memory utilization rate, 0 - 100
+     */
     @Column(name = "avg_memory")
     private Double avgMemory;
 

@@ -11,14 +11,16 @@ public class ProcessHolder {
     private static Logger logger = LogManager.getLogger(Scheduler.class);
 
     private String execPath;
+    private String taskId;
     private Process process;
     private long pid;
     private long start;
 
     private PsStat summaryStat;
 
-    public ProcessHolder(String execPath, Process process){
+    public ProcessHolder(String execPath, String taskId, Process process){
         this.execPath = execPath;
+        this.taskId = taskId;
         this.process = process;
         this.start = new Date().getTime();
         findPid();
@@ -71,6 +73,14 @@ public class ProcessHolder {
 
     public void setSummaryStat(PsStat summaryStat) {
         this.summaryStat = summaryStat;
+    }
+
+    public String getTaskId() {
+        return taskId;
+    }
+
+    public void setTaskId(String taskId) {
+        this.taskId = taskId;
     }
 
     /**
