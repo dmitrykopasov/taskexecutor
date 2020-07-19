@@ -1,4 +1,4 @@
-Required to build: java1.8/maven
+Required to build: java1.8/maven/node-v12/npm-v6
 Required to run: linux/java1.8/postgres
 
 Steps to launch:

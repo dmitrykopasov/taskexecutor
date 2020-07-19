@@ -90,7 +90,7 @@
                 <executions>
                     <execution>
                         <id>install npm dependencies</id>
-                        <phase>generate-resources</phase>
+                        <phase>generate-sources</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -102,7 +102,7 @@
                     </execution>
                     <execution>
                         <id>build js</id>
-                        <phase>process-classes</phase>
+                        <phase>generate-sources</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
