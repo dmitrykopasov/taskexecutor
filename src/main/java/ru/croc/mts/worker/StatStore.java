@@ -36,7 +36,7 @@ public class StatStore {
             newLog.setMemory(0.);
         } else {
             newLog.setCpu(holder.getSummaryStat().getAvgCpu());
-            newLog.setMemory(holder.getSummaryStat().getMemory());
+            newLog.setMemory(holder.getSummaryStat().getAvgMemory());
         }
         newLog.setExecTime(holder.getDuration());
         newLog.setCreatedAt(new Date());
