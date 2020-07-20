@@ -4,7 +4,7 @@
                  :label="'Список задач'"
                  :items="items"
                  :fields="table.fields"
-                 @row-dblclicked="openTask">
+                 @row-clicked="openTask">
             <template v-slot:table-caption><h5>Список задач</h5></template>
         </b-table>
     </div>
@@ -40,6 +40,7 @@
                 } else if (value == 'WAITING') {
                     return 'Ожидает'
                 }
+                return value
             }
         }
     }
